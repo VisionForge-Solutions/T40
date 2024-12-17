@@ -1,0 +1,17 @@
+.footer {
+    background-color: #4f46e5;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+  }
+
+  .footer p a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .footer p a:hover {
+    color: blue;
+  }
+  
