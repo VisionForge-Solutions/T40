@@ -1,0 +1,139 @@
+/* BusOperators.css */
+.bus-operators-section {
+  max-width: 1050px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.bus-operators-comparison {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #64748B;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.operators-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.operator-card {
+  padding: 1.25rem;
+  border-radius: 8px;
+  background: white;
+  margin-bottom: 1rem;
+  border: 1px solid #E2E8F0;
+}
+
+.operator-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 1rem;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.route {
+  flex: 1;
+  font-size: 14px;
+  color: #64748B;
+}
+
+.time {
+  font-size: 14px;
+  color: #64748B;
+  margin-right: 2rem;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #FF6B00;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .bus-operators-section {
+    padding: 0 1.5rem;
+  }
+
+  .operators-container {
+    padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bus-operators-section {
+    padding: 0 1rem;
+    margin: 2rem auto;
+  }
+
+  .operators-container {
+    padding: 1rem;
+  }
+
+  .details-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .time {
+    margin-right: 0;
+  }
+
+  .price {
+    text-align: left;
+  }
+
+  .title, .subtitle {
+    br {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bus-operators-section {
+    padding: 0 0.75rem;
+  }
+
+  .operator-card {
+    padding: 1rem;
+  }
+
+  .operator-name {
+    font-size: 16px;
+  }
+
+  .route, .time {
+    font-size: 13px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+}
+
+/* Pagination styles remain in their own file */

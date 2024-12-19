@@ -1,16 +1,22 @@
 .ticket-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
+  align-items: flex-start; /* Changed from center to align with image */
+  padding: 4rem 6rem; /* Increased padding to match layout */
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #1e1e2d;
+  background-color: white; /* Changed to white to match design */
+  gap: 4rem; /* Added gap between text and form */
+}
+
+.ticket-info {
+  max-width: 400px; /* Control the width of the text section */
 }
 
 .ticket-info h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 3rem; /* Increased size */
+  line-height: 1.2;
+  color: #14213d; /* Darker blue color from image */
+  margin-bottom: 1.5rem;
 }
 
 .ticket-info .highlight {
@@ -24,10 +30,10 @@
 
 .form-container {
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  margin-top: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 450px; /* Adjusted width */
+  margin: 0; /* Removed top margin */
 }
 
 .form-header {
@@ -43,35 +49,69 @@
 }
 
 .form-body {
-  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .form-row {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 15px;
 }
 
 .input-group {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  margin-bottom: 1.5rem;
 }
 
 .input-group label {
-  display: block;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .input-box {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  border: 1px solid #ddd;
-  padding: 0.8rem;
-  border-radius: 5px;
-  background-color: #f5f5f5;
-  font-size: 0.9rem;
+  gap: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-box .icon {
+  color: #4c6ef5;
+}
+
+.input-box input,
+.input-box select {
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  width: 100%;
+  color: #333;
+}
+
+.passenger-select {
+  /* appearance: none;  */
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.input-group.full-width {
+  width: 100%;
 }
 
 .full-width {
@@ -93,45 +133,32 @@
   background-color: #161625;
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .ticket-container {
+    padding: 3rem 4rem;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .ticket-container {
+    padding: 2rem;
+  }
+  
+  .ticket-info h1 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .ticket-container {
     flex-direction: column;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .form-container {
     width: 100%;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  .ticket-info h1 {
-    font-size: 1.5rem;
-  }
-
-  .ticket-info p {
-    font-size: 0.8rem;
-  }
-
-  .form-header {
-    font-size: 0.9rem;
-  }
-
-  .form-body {
-    padding: 1rem;
-  }
-
-  .input-box {
-    padding: 0.5rem;
-    font-size: 0.8rem;
-  }
-
-  .search-button {
-    font-size: 0.9rem;
+    margin-top: 2rem;
   }
 }
