@@ -6,14 +6,12 @@ const BookTicket = () => {
   const [cities, setCities] = useState([]);
   const [departureCity, setDepartureCity] = useState('');
   const [destinationCity, setDestinationCity] = useState('');
-  const [travelDate, setTravelDate] = useState('2023-11-22');
+  const [travelDate, setTravelDate] = useState(new Date().toISOString().split('T')[0]); // Default to today's date
   const [passengers, setPassengers] = useState(1);
   const [availableRides, setAvailableRides] = useState([]);
   const [error, setError] = useState(null);
 
-  const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
-  // console.log(PUBLIC_KEY);
-  
+  const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY || 'default-key';
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -22,22 +20,23 @@ const BookTicket = () => {
           method: "GET",
           headers: {
             "Accept": "application/json",
-            "Authorization": `Bearer ${PUBLIC_KEY}`, // Replace with your key
+            "Authorization": `Bearer ${PUBLIC_KEY}`,
           },
         });
-    
 
         if (!response.ok) {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
 
         const data = await response.json();
-
-        // Assuming the API returns an array of cities
-        const uniqueCities = [...new Set(data.map(route => route.city))]; // Extract unique city names
+        const uniqueCities = [...new Set(data.map(route => route.city))];
         setCities(uniqueCities);
-        setDepartureCity(uniqueCities[0]); // Default to the first city
-        setDestinationCity(uniqueCities[1] || uniqueCities[0]); // Default to a different city or the same
+        if (uniqueCities.length > 1) {
+          setDepartureCity(uniqueCities[0]);
+          setDestinationCity(uniqueCities[1]);
+        } else {
+          setError('Not enough cities available for travel.');
+        }
       } catch (err) {
         console.error(err.message);
         setError('Failed to fetch cities. Please try again.');
@@ -45,9 +44,8 @@ const BookTicket = () => {
     };
 
     fetchCities();
-  }, []);
+  }, [PUBLIC_KEY]);
 
-  // Handle search
   const handleSearch = async () => {
     try {
       setError(null); // Reset error
@@ -56,23 +54,16 @@ const BookTicket = () => {
         method: "GET",
         headers: {
           "Accept": "application/json",
-          "Authorization": `Bearer ${PUBLIC_KEY}`, // Replace with your key
+          "Authorization": `Bearer ${PUBLIC_KEY}`,
         },
       });
-      
-      const queryParams = new URLSearchParams({
-        from: departureCity,
-        to: destinationCity,
-        date: travelDate,
-      });
-
-      // const response = await fetch(`${url}?${queryParams}`, { headers });
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
 
       const data = await response.json();
+      // Assuming the data includes available rides
       setAvailableRides(data);
     } catch (err) {
       console.error(err.message);
@@ -80,7 +71,6 @@ const BookTicket = () => {
     }
   };
 
-  
   return (
     <div className="ticket-container">
       <div className="ticket-info">
@@ -94,10 +84,8 @@ const BookTicket = () => {
           <FaUser /> Buy tickets
         </div>
         <div className="form-body">
-          {/* Error Message */}
           {error && <div className="error-message">{error}</div>}
-  
-          {/* Passengers Row */}
+
           <div className="input-group full-width">
             <label htmlFor="passenger-count">Passengers</label>
             <div className="input-box">
@@ -116,8 +104,7 @@ const BookTicket = () => {
               </select>
             </div>
           </div>
-  
-          {/* From and To Row */}
+
           <div className="form-row">
             <div className="input-group">
               <label htmlFor="from">From</label>
@@ -136,7 +123,7 @@ const BookTicket = () => {
                 </select>
               </div>
             </div>
-  
+
             <div className="input-group">
               <label htmlFor="to">To</label>
               <div className="input-box">
@@ -155,8 +142,7 @@ const BookTicket = () => {
               </div>
             </div>
           </div>
-  
-          {/* Departure Date */}
+
           <div className="input-group full-width">
             <label htmlFor="departure-date">Departure Date</label>
             <div className="input-box">
@@ -169,15 +155,27 @@ const BookTicket = () => {
               />
             </div>
           </div>
-  
-          {/* Search Button */}
+
           <button className="search-button" onClick={handleSearch}>
             Search
           </button>
+
+          {availableRides.length > 0 && (
+            <div className="rides-list">
+              <h3>Available Rides</h3>
+              <ul>
+                {availableRides.map((ride, index) => (
+                  <li key={index}>
+                    {ride.details || `Ride ${index + 1}`} {/* Replace "details" with the actual field */}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
-  );  
+  );
 };
 
 export default BookTicket;
