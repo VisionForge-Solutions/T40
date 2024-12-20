@@ -1,28 +1,103 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 6rem; /* Default padding for large screens */
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 32px; /* Default height for large screens */
+  width: auto;
+  object-fit: contain; /* Maintains aspect ratio */
+}
+
+.ticket-btn {
+  background-color: #1e3a8a;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents button text from wrapping */
+  font-size: 1rem;
+}
+
+.ticket-btn:hover {
+  background-color: #172554;
+}
+
+/* Large screens */
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 1rem 4rem;
   }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
+}
+
+/* Medium screens */
+@media screen and (max-width: 992px) {
+  .header {
+    padding: 0.875rem 3rem;
   }
-  
+
+  .logo img {
+    height: 28px;
+  }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0.75rem 2rem;
+    flex-direction: column; /* Stack content on smaller screens */
+  }
+
+  .logo img {
+    height: 26px;
+    margin-bottom: 0.5rem; /* Add spacing below the logo */
+  }
+
   .ticket-btn {
-    background-color: #1e3a8a;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 0.9rem; /* Slightly smaller button text */
+    padding: 0.5rem 0.8rem; /* Adjust button size */
   }
-  
-  .ticket-btn:hover {
-    background-color: #172554;
+}
+
+/* Large Mobile */
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0.75rem 1.5rem;
   }
-  
+
+  .logo img {
+    height: 24px;
+  }
+}
+
+/* Small Mobile */
+@media screen and (max-width: 375px) {
+  .header {
+    padding: 0.625rem 1rem;
+  }
+
+  .logo img {
+    height: 22px;
+  }
+
+  .ticket-btn {
+    font-size: 0.8rem; /* Smaller button text for small devices */
+    padding: 0.4rem 0.7rem; /* Compact button size */
+  }
+}
