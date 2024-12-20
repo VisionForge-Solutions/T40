@@ -1,6 +1,5 @@
 # T40
-# secretw_key : sk_$2y$10$NXZA7FoHDZhyregdl1QhveNVK5ifERScXvft1bcQ6CcO5ZshhKWye
-# public_key : pk_$2y$10$fPXHHU39Mev5/VKH8MQLs.vguQ8u7ZtyzVxlJQT2o9/hrnTM./kfe
+
 
 T40 Ride Query Web Application
 
@@ -46,7 +45,6 @@ API Key from T40
 2. cd (repository folder)
 3. Install Dependencies: npm install
 4. Create Environment File: Create a .env file in the root directory and add the public key
-(pk_$2y$10$fPXHHU39Mev5/VKH8MQLs.vguQ8u7ZtyzVxlJQT2o9/hrnTM./kfe)
 5. Run the Application Locally: npm start
 
 Deployment: The application is deployed on Netlify. Access the live version <>
